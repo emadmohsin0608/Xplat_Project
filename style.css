@@ -2055,7 +2055,8 @@ body{
 }
 .blog .single-news .news-body h2 a{
 	color:#2C2D3F;
-	font-weight: 500;
+	font-weight: 700;
+	font-size: larger;
 }
 .blog .single-news .news-body h2 a:hover{
 	color:#1A76D1;
