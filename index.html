@@ -64,6 +64,18 @@
 			.animated-section:nth-child(5) { transition-delay: 0.5s; }
 			.animated-section:nth-child(6) { transition-delay: 0.6s; }
 			.animated-section:nth-child(7) { transition-delay: 0.7s; }
+
+			.animate-image {
+				opacity: 0;
+				transform: translateX(-200%);
+				transition: opacity 1s ease-out, transform 1.75s ease-out;
+			}
+			
+			/* Animation when the image is in view */
+			.animate-image.in-view {
+				opacity: 1;
+				transform: translateX(0);
+			}
 		</style>
     </head>
     <body>
@@ -110,7 +122,7 @@
 						<div class="col-lg-6 col-md-5 col-12">
 							<!-- Contact -->
 							<ul class="top-link">
-								<li><a href="#" style="color: #1a76d1; font-weight: 500; font-size: larger;">Welcome to FLTECH SOLUTIONS </a></li>
+								<li><a href="#" style="color: #1a76d1; font-weight: 500; font-size: larger;">WELCOME TO <span style="font-size: 1.25rem;font-weight: 700;">FLTECH SOLUTIONS</span></a></li>
 								<!-- <li><a href="#">Doctors</a></li>
 								<li><a href="#">Contact</a></li>
 								<li><a href="#">FAQ</a></li> -->
@@ -173,7 +185,7 @@
 		<!-- End Header Area -->
 
 		<!-- Slider Area -->
-		<section class="slider animated-section">
+		<section class="slider animated-section ">
 			<div class="hero-slider">
 				<!-- Start Single Slider -->
 				<div class="single-slider" style="background-image:url('img/newslider1.jpg')">
@@ -290,7 +302,7 @@
 			</div>
 		</section>
 		<!--/ End Slider Area -->
-		<section class="why-choose section animated-section" >
+		<section class="why-choose section animated-section " >
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
@@ -325,7 +337,7 @@
 					</div>
 					<div class="col-lg-6 col-12">
 						<!-- Start Choose Rights -->
-						<img src="img/aboutus.jpg" alt="#">
+						<img src="img/aboutus.jpg" alt="#" class="animate-image">
 						<!-- End Choose Rights -->
 					</div>
 				</div>
@@ -337,7 +349,7 @@
 		<!--/End Start schedule Area -->
 
 		<!-- Start Feautes -->
-		<section class="Feautes section animated-section">
+		<section class="Feautes section animated-section ">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
@@ -429,7 +441,7 @@
 		<!--/ End Why choose -->
 
 		<!-- Start Call to action -->
-		<section class="call-action overlay animated-section" data-stellar-background-ratio="0.5">
+		<section class="call-action overlay animated-section " data-stellar-background-ratio="0.5">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-12">
@@ -517,7 +529,7 @@
 		<!--/Ens clients -->
 
 		<!-- Start Appointment -->
-		<section class="appointment animated-section">
+		<section class="appointment animated-section ">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
@@ -575,7 +587,7 @@
 					</div>
 					<div class="col-lg-6 col-md-12 ">
 						<div class="appointment-image">
-							<img src="img/contact-img.png" alt="#">
+							<img src="img/contact-img.png" alt="#" class="animate-image">
 						</div>
 					</div>
 				</div>
@@ -584,7 +596,7 @@
 		<!-- End Appointment -->
 
 		<!-- Start Newsletter Area -->
-		<section class="newsletter section animated-section">
+		<section class="newsletter section animated-section ">
 			<div class="container">
 				<div class="row ">
 					<div class="col-lg-6  col-12">
@@ -760,6 +772,27 @@
 			
 				sections.forEach(section => {
 					observer.observe(section);
+				});
+			});
+			document.addEventListener('DOMContentLoaded', function () {
+				const images = document.querySelectorAll('.animate-image');
+			
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							// Add the 'in-view' class when the image is in view
+							entry.target.classList.add('in-view');
+						} else {
+							// Remove the 'in-view' class when the image is out of view
+							entry.target.classList.remove('in-view');
+						}
+					});
+				}, {
+					threshold: 0.1 // Trigger when 10% of the image is visible
+				});
+			
+				images.forEach(image => {
+					observer.observe(image);
 				});
 			});
 		</script>
